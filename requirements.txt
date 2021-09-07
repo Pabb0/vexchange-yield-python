@@ -1,6 +1,5 @@
 cryptocompare~=0.7.5
 pandas~=1.3.2
-requests~=2.26.0
 thor-requests~=0.8.0
 plotly~=5.3.1
 kaleido~=0.2.1
