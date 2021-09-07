@@ -24,10 +24,12 @@ def plot_data(data) -> None:
         df, name = data[i]
         fig.add_trace(go.Scatter(x=df.index, y=df['APY'],
                                  mode='lines',
+                                 text=df['APY'],
                                  name=name))
 
+    fig.write_html('APY.html')
     fig.show()
-    fig.write_image('APY.png')
+
 
 if __name__ == "__main__":
     main()
