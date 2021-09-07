@@ -10,9 +10,9 @@ This project tracks the APY of the most popular tokens on Vexchange (in an LP wi
 ## How to run for the first time
 - Clone the repository
 - Add your info to [initial JSON file](data/token_addresses.json)
-  - For every token you can set the amount of LP tokens you have (check [Vexchange](https://www.vexchange.io) for this) (or just leave it at 1000 if you just want to see the APY)
+  - For every token you can set the amount of LP tokens you have (check [Vexchange](https://www.vexchange.io) for this (or find it by interacting with the contract (similar to [this](calculations/get_lp_tokens.py))) (or just leave it at 1000 if you just want to see the APY)
   - For every token you need to set the start date ( = current date).
-  - Don't touch the address
+  - Don't touch the address of the token (needed to interact with the contract)
 - Install the required packages
 - Run the [script](main.py)
 After running the script, a HTML page will open showing the forecasted APY's.
