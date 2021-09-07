@@ -1,4 +1,4 @@
-# Vexchange Yield Calculator - Python version
+# [Vexchange Yield Calculator - Python version](index.md)
 
 This project tracks the APY of the most popular tokens on Vexchange (in an LP with VET):
   - VeThor Token
