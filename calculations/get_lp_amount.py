@@ -2,6 +2,7 @@ import requests
 from thor_requests.connect import Connect
 from thor_requests.contract import Contract
 from thor_requests.utils import calc_blockRef, inject_decoded_return, inject_decoded_event
+import sys
 
 
 def wei_to_eth(x):
@@ -23,6 +24,8 @@ def get_lp_amount(token_address):
 
 def interact_with_contract(connector, token_address, func_name):
     _contract_address = token_address
+    # File gets opened relative to the filepath of the script that is executing.
+    # main.py will get executed, so we write the path relative to main.py
     _contract = Contract.fromFile("./contracts/IVexchangeV2Pair.json")
 
     clause = connector.clause(contract=_contract,
@@ -39,6 +42,7 @@ def interact_with_contract(connector, token_address, func_name):
                       headers={"accept": "application/json", "Content-Type": "application/json"},
                       json=json_data
                       )
+
     # decode the "return data" from the function call
     first_clause = r.json()[0]
     first_clause = inject_decoded_return(first_clause, _contract, func_name)

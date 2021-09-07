@@ -1,4 +1,4 @@
-from get_lp_amount import get_lp_amount
+from calculations.get_lp_amount import get_lp_amount
 import pandas as pd
 from datetime import date
 

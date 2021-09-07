@@ -1,4 +1,4 @@
-from get_data import get_data
+from calculations.get_data import get_data
 import plotly.graph_objects as go
 import json
 import cryptocompare
@@ -18,7 +18,7 @@ def main():
     plot_data(data)
 
 
-def plot_data(data):
+def plot_data(data) -> None:
     fig = go.Figure()
     for i in range(len(data)):
         df, name = data[i]
@@ -27,6 +27,7 @@ def plot_data(data):
                                  name=name))
 
     fig.show()
+    fig.write_html('apy.html')
 
 if __name__ == "__main__":
     main()
