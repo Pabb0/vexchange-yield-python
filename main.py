@@ -23,7 +23,8 @@ def main() -> None:
     with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
         # zip([0,1], [a,b]) == [[0,a], [1,b]]
         # data is a list of tuples: (Pandas dataframe, string)
-        data = pool.starmap(get_data, zip(token_data.keys(), token_data.values(), repeat(vet_price), repeat(vtho_price)))
+        data = pool.starmap(get_data,
+                            zip(token_data.keys(), token_data.values(), repeat(vet_price), repeat(vtho_price)))
 
     # Plot the data
     plot_data(data)
@@ -35,6 +36,11 @@ def plot_data(data) -> None:
     """
     # Make a figure
     fig = go.Figure()
+    fig.update_layout(
+        title="Overview of the APY of different tokens",
+        xaxis_title="Days since",
+        yaxis_title="APY"
+    )
 
     # Add every token to the figure
     for (df, name) in data:
@@ -43,9 +49,7 @@ def plot_data(data) -> None:
                                  name=name))
 
     # Save a HTML copy
-    fig.write_html('APY.html')
-
-    fig.show()
+    fig.write_html('APY.html', auto_open=True)
 
 
 if __name__ == "__main__":
