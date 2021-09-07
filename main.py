@@ -46,7 +46,8 @@ def plot_data(data) -> None:
     for (df, name) in data:
         fig.add_trace(go.Scatter(x=df.index, y=df['APY'],
                                  mode='lines',
-                                 name=name))
+                                 name=name)
+                      )
 
     # Save a HTML copy
     fig.write_html('APY.html', auto_open=True)
