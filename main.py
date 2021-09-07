@@ -27,7 +27,7 @@ def plot_data(data) -> None:
                                  name=name))
 
     fig.show()
-    fig.write_html('apy.html')
+    fig.write_image('APY.png')
 
 if __name__ == "__main__":
     main()
