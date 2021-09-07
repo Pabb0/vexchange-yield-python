@@ -1,7 +1,5 @@
 # Vexchange Yield Calculator - Python version
 
-Almost identical project as the Javascript/Node.js version
-
 This project tracks the APY of the most popular tokens on Vexchange (in an LP with VET):
   - VeThor Token
   - OceanEx
