@@ -50,7 +50,7 @@ def plot_data(data) -> None:
                       )
 
     # Save a HTML copy
-    fig.write_html('charts/general_apy_tokens.html', auto_open=True, include_plotlyjs='cdn')
+    fig.write_html('docs/charts/general_apy_tokens.html', auto_open=True, include_plotlyjs='cdn')
 
 
 if __name__ == "__main__":
