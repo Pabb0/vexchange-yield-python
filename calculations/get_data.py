@@ -37,6 +37,9 @@ def get_data(name: str, info: dict, price_of_vet: float, price_of_vtho: float):
                 initial_amount_of_other * price_of_other)
     earnings_now: float = amount_of_vet * price_of_vet + amount_of_other * price_of_other
 
+    if name == 'VTHO':
+        print(f'Using vexchange you earned ${earnings_now-earnings_initial_amount} extra in {days_since} days')
+
     apy: float = (((earnings_now / earnings_initial_amount) - 1) * (365 / days_since))
 
     df.loc[days_since] = [amount_of_vet, amount_of_other, apy]
