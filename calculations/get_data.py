@@ -38,6 +38,9 @@ def get_data(name: str, info: dict, price_of_vet: float, price_of_vtho: float):
     earnings_now: float = amount_of_vet * price_of_vet + amount_of_other * price_of_other
 
     if name == 'VTHO':
+        print(f'Market rate VTHO/VET   : {price_of_vet / price_of_vtho}')
+        print(f'Vexchange rate VTHO/VET: {amount_of_other / amount_of_vet}')
+        print(f'Initial rate VTHO/VET  : {initial_amount_of_other / initial_amount_of_vet}')
         print(f'Using vexchange you earned ${earnings_now-earnings_initial_amount} extra in {days_since} days')
 
     apy: float = (((earnings_now / earnings_initial_amount) - 1) * (365 / days_since))
