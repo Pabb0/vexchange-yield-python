@@ -11,9 +11,11 @@ from itertools import repeat
 
 def main() -> None:
     # Get the current market VET and VTHO prices
+    print('Retrieving market prices...')
     prices: dict = cryptocompare.get_price(['VET', 'VTHO'], currency='USD')
     vet_price: float = prices['VET']['USD']
     vtho_price: float = prices['VTHO']['USD']
+    print('Market prices retrieved...')
 
     # Get our initial information (token addresses and starting info)
     with open('data/token_addresses.json', 'r') as f:
@@ -50,7 +52,7 @@ def plot_data(data) -> None:
                       )
 
     # Save a HTML copy
-    fig.write_html('charts/general_apy_tokens.html', auto_open=True, include_plotlyjs='cdn')
+    fig.write_html('charts/general_apy_tokens.html', auto_open=False, include_plotlyjs='cdn')
 
 
 if __name__ == "__main__":

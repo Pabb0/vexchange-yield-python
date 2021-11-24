@@ -15,7 +15,10 @@ def get_lp_amount(token_address):
     """
     connector: Connect = Connect("http://mainnet.veblocks.net")
 
+    print('Connecting to API...')
+
     total_supply: dict = interact_with_contract(connector, token_address, 'totalSupply')
+
     lp_amount: float = wei_to_eth(total_supply['decoded']['0'])
 
     reserves: dict = interact_with_contract(connector, token_address, 'getReserves')
@@ -30,11 +33,11 @@ def interact_with_contract(connector: Connect, token_address: str, func_name: st
     Given a connector (to connect to the API), a token address and a function name,
     returns the decoded response of that function for that contract address.
     """
+    print('Interacting with contract...')
     contract_address: str = token_address
     # File gets opened relative to the filepath of the script that is executing.
     # main.py will get executed, so we write the path relative to main.py
     contract: Contract = Contract.fromFile("./contracts/IVexchangeV2Pair.json")
-
     # Make out clause to put it on JSON POST request
     clause: dict = connector.clause(contract=contract,
                                     func_name=func_name,
@@ -42,6 +45,7 @@ def interact_with_contract(connector: Connect, token_address: str, func_name: st
                                     to=contract_address)
 
     # Add necessary data to our JSON.
+    print(connector.get_block("best")["id"])
     json_data: dict = {
         'clauses': [clause],
         'blockRef': calc_blockRef(connector.get_block("best")["id"]),
@@ -49,6 +53,7 @@ def interact_with_contract(connector: Connect, token_address: str, func_name: st
     }
 
     # Make and get our POST request
+    print('Making request...')
     r = requests.post('https://mainnet.veblocks.net/accounts/*',
                       headers={"accept": "application/json", "Content-Type": "application/json"},
                       json=json_data

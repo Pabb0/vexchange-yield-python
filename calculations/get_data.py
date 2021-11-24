@@ -1,3 +1,5 @@
+import time
+
 from calculations.get_lp_amount import get_lp_amount
 import pandas as pd
 from datetime import date
@@ -9,6 +11,7 @@ def get_data(name: str, info: dict, price_of_vet: float, price_of_vtho: float):
     A tuple containing the dataframe and the name of the token is returned.
     """
     # Get the token_address (contract address) of the token and the amount of initial LP tokens.
+    print(f'Getting info for {name}')
     token_address: str = info['address']
     my_liquidity: float = info['amount']
 
@@ -38,10 +41,23 @@ def get_data(name: str, info: dict, price_of_vet: float, price_of_vtho: float):
     earnings_now: float = amount_of_vet * price_of_vet + amount_of_other * price_of_other
 
     if name == 'VTHO':
-        print(f'Market rate VTHO/VET   : {price_of_vet / price_of_vtho}')
-        print(f'Vexchange rate VTHO/VET: {amount_of_other / amount_of_vet}')
-        print(f'Initial rate VTHO/VET  : {initial_amount_of_other / initial_amount_of_vet}')
-        print(f'Using vexchange you earned ${earnings_now-earnings_initial_amount} extra in {days_since} days')
+        print(f'Market rate VTHO/VET        : {price_of_vet / price_of_vtho}')
+        print(f'Vexchange rate VTHO/VET     : {amount_of_other / amount_of_vet}')
+        print(f'Initial rate VTHO/VET       : {initial_amount_of_other / initial_amount_of_vet}')
+
+        print(f'Your total earnings are     : ${earnings_now}')
+        print(f'Using Vexchange you earned  : ${earnings_now-earnings_initial_amount} extra in {days_since} days')
+
+    if name == 'VEX':
+        time.sleep(1)
+        farm_amount = 64.64+18.75
+        earnings_now += farm_amount*price_of_other
+        amount_of_other += farm_amount
+        print(f'Vexchange rate VET/VEX      : {amount_of_vet / amount_of_other}')
+        print(f'Initial rate VET/VEX        : {initial_amount_of_vet / initial_amount_of_other}')
+        print(f'Price of VEX                : ${price_of_other}')
+        print(f'Your total earnings are     : ${earnings_now}')
+        print(f'Using Vexchange you earned  : ${earnings_now-earnings_initial_amount} extra in {days_since} days')
 
     apy: float = (((earnings_now / earnings_initial_amount) - 1) * (365 / days_since))
 
