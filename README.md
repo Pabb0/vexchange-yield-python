@@ -1,11 +1,6 @@
 # [Vexchange Yield Calculator - Python version](https://pabb0.github.io/vexchange-yield-python/)
 
-This project tracks the APY of the most popular tokens on Vexchange (in an LP with VET):
-  - VeThor Token
-  - OceanEx
-  - Safe Haven
-  - VIMworld
-  - VPunks Token
+This project tracks the APY of the VTHO (in an LP with VET) and VEX Vexchange (in an LP with VET + farming)
   
 ## How to run for the first time
 - Clone the repository
